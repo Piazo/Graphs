@@ -1,0 +1,16 @@
+package org.insa.graphs.model;
+
+public class LabelAStar extends Label {
+
+	private float estimated_cost;
+	
+	public LabelAStar(Node n, boolean Marked, float cost, Arc father, float estimated_cost) {
+		super(n, Marked, cost, father);
+		this.estimated_cost = estimated_cost;
+	}
+	
+	public float getTotalCost() {
+		return this.cout+this.estimated_cost;
+	}
+	
+}

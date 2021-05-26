@@ -1,0 +1,16 @@
+INDEX VERSION 1.131+/home/alaverdo/Bureau/alaverdo/.metadata/.plugins/org.eclipse.jdt.core
+2640048331.index
+4026580753.index
+3095407663.index
+20914971.index
+2640285120.index
+1079996521.index
+115431326.index
+332835449.index
+3803933088.index
+588487344.index
+1282465073.index
+1141053936.index
+1587669042.index
+715979601.index
+649742614.index

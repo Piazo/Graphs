@@ -20,11 +20,11 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
         super(data);
     }
 
-    protected void insert(BinaryHeap<Label> BH, Node n, boolean isMarked, float cout, Arc pere, ShortestPathData data) {
+    protected void insert(BinaryHeap<Label> BinHeap, Node noeud, boolean isMarked, float cout, Arc pere, ShortestPathData data) {
     	Label l;
-		l = new Label(n, isMarked, cout, pere);
-		BH.insert(l);
-		Label.Labels[n.getId()] = l;
+		l = new Label(noeud, isMarked, cout, pere);
+		BinHeap.insert(l);
+		Label.Labels[noeud.getId()] = l;
 		notifyNodeReached(l.getSommet_courrant());
     }
     
@@ -33,23 +33,23 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
         final ShortestPathData data = getInputData();
         ShortestPathSolution solution = null;
         
-     // On recupere l'origine
+        // On recupere l'origine
         notifyOriginProcessed(data.getOrigin());
         
         Graph graphe = data.getGraph();
-        BinaryHeap<Label> BH = new BinaryHeap<Label>();
+        BinaryHeap<Label> BinHeap = new BinaryHeap<Label>();
         final int nbNodes = graphe.size();
         int Nb_Marked_Nodes = 0;
         
-        // initialization
+        // On initialise
         Label.Labels = new Label[graphe.getNodes().size()];
-        Node n = data.getOrigin();
-        insert(BH, n, true, (float)0.0, null, data);
+        Node noeud = data.getOrigin();
+        insert(BinHeap, noeud, true, (float)0.0, null, data);
         
         //iterations
-        while (Nb_Marked_Nodes != nbNodes && !BH.isEmpty()){
-        	Label L_Origin = BH.findMin();
-        	BH.deleteMin();
+        while (Nb_Marked_Nodes != nbNodes && !BinHeap.isEmpty()){
+        	Label L_Origin = BinHeap.findMin();
+        	BinHeap.deleteMin();
         	L_Origin.setMarked(true);
         	Nb_Marked_Nodes++;
         	notifyNodeMarked(L_Origin.getSommet_courrant());
@@ -64,15 +64,15 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
                 
         		Node N_Destination = a.getDestination();
 				if (Label.Labels[N_Destination.getId()] == null) {
-					insert(BH, N_Destination, false, (float) (L_Origin.getCost() + data.getCost(a)), a, data);
+					insert(BinHeap, N_Destination, false, (float) (L_Origin.getCost() + data.getCost(a)), a, data);
 				}
 				else {
 					if (Label.Labels[N_Destination.getId()].isMarked() == false) {
 	        			if (Label.Labels[N_Destination.getId()].getCost() > (L_Origin.getCost() + data.getCost(a))) {
-	        				BH.remove(Label.Labels[N_Destination.getId()]);        					
+	        				BinHeap.remove(Label.Labels[N_Destination.getId()]);        					
 	        				Label.Labels[N_Destination.getId()].setCost((float) (L_Origin.getCost() + data.getCost(a)));
 	        				Label.Labels[N_Destination.getId()].setPere(a);
-	        				BH.insert(Label.Labels[N_Destination.getId()]);
+	        				BinHeap.insert(Label.Labels[N_Destination.getId()]);
 	        			}
 	        		}
 				}
