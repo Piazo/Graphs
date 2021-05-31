@@ -80,15 +80,15 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
         	}
         }
         
-        //Destination cost is infinite, the solution is infeasible...
+        //Si le cout est infini, le chemin est infaisable
         if (Label.Labels[data.getDestination().getId()] == null || !Label.Labels[data.getDestination().getId()].isMarked()) {
         	solution = new ShortestPathSolution(data, Status.INFEASIBLE);
         }
         else {
-        	// The destination has been found, notify the observers.
+        	//La destination a ete trouvee et on le notifie
         	notifyDestinationReached(data.getDestination());
            
-        	// Create the path from the array of predecessors...
+        	// creation du path a partir des predecesseurs
         	ArrayList<Arc> arcs = new ArrayList<>();
         	Arc arc = Label.Labels[data.getDestination().getId()].getPere();
         	while (arc != null) {
@@ -96,10 +96,10 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
         		arc = Label.Labels[arc.getOrigin().getId()].getPere();
         	}
          
-        	// Reverse the path...
+        	//inversion du path pour avoir la solution a l'endroit
         	Collections.reverse(arcs);
         	
-        	// Create the final solution.
+        	// Solution finale
         	if (arcs.size() == 0) {
         		solution = new ShortestPathSolution(data, Status.OPTIMAL, new Path(graphe, data.getOrigin()));
         	}
