@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Iterator"/>
-    <fullyQualifiedTypeName name="org.insa.graphs.algorithm.utils.BinaryHeap"/>
-    <fullyQualifiedTypeName name="org.insa.graphs.model.Graph"/>
-    <fullyQualifiedTypeName name="org.insa.graphs.model.Label"/>
-</qualifiedTypeNameHistroy>
